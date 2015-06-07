@@ -18,6 +18,7 @@
 :- use_module(parser).
 :- use_module(dispatch).
 :- use_module(utilities).
+:- use_module(state).
 :- use_module(library(socket)).
 :- use_module(library(func)).
 
