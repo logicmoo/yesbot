@@ -5,7 +5,8 @@
 :- module(web,
      [ visit_url/2
       ,url_get_title/2
-      ,content_type_opts/2 ]).
+      ,content_type_opts/2
+      ,cert_verify/5 ]).
 
 :- use_module(html).
 :- use_module(library(http/http_open)).
