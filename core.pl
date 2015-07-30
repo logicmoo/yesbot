@@ -201,7 +201,8 @@ process_msg(Msg) :-
 %
 % Disconnect from the server, run cleanup routine, and attempt to reconnect.
 reconnect :-
-  thread_signal(ct, throw(abort)).
+  disconnect,
+  connect.
 
 
 %% disconnect is semidet.
@@ -214,11 +215,12 @@ disconnect :-
   send_msg(quit),
   info_cleanup,
   message_queue_destroy(tq),
+  message_queue_destroy(smq),
   thread_join(ping_checker, _),
   thread_join(sync_worker, _),
   get_tcp_socket(Socket),
   tcp_close_socket(Socket),
-  retractall(get_socket(_)),
+  retractall(get_tcp_socket(_)),
   close(Stream).
 
 
